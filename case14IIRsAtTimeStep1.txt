@@ -1,0 +1,11 @@
+G2 <- T1 G1   G2
+G3 <- T3 G2   T6 L1   G3
+L1 <- T4 G2   T7 L2   T8 N1   T9 L3   G1   G2   G4   G5
+L2 <- T2 G1   T5 G2   T10 G4   G1   G2   G4
+N1 <- T14 G5
+L3 <- T15 N1   G5
+L4 <- T16 L3   T18 L5   G4   G5
+L5 <- T11 G4   G4
+L6 <- T12 G4   G4
+L7 <- T13 G4   T19 L6   G4
+L8 <- T17 L3   T20 L7   G4   G5
