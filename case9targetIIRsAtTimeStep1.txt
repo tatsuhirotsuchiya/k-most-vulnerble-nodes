@@ -1,0 +1,6 @@
+N1 <- T1 G1
+L1 <- T2 N1   T3 N2   G1   G3
+N2 <- T4 G3
+L2 <- T5 N2   T6 N3   G2   G3
+N3 <- T7 G2
+L3 <- T8 N3   T9 N1   G1   G2

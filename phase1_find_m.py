@@ -5,8 +5,24 @@ from z3 import *  # Please install z3py with "pip install z3py"
 import re
 import itertools
 
+import time  # only for follow-up experiment
+
+# flag for follow-up experiment
+VERBOSE = True
+
 # Pls hard-code the input file name here
-file = "case300IIRsAtTimeStep1.txt"
+file = "case300IIRsAtTimeStep1.txt"  # 709
+# file = "case6wwIIRsAtTimeStep1.txt"  # #entities = 17
+# file = "case118IIRsAtTimeStep1.txt"  # 297
+# file = "case145IIRsAtTimeStep1.txt"  # 567
+# file = "case14IIRsAtTimeStep1.txt"  # 34
+# file = "case30IIRsAtTimeStep1.txt"  # 71 -> 5  We thought this is bus-30.
+# file = "case5IIRsAtTimeStep1.txt"  # 11
+# file = "case89pegaseIIRsAtTimeStep1.txt"  # 295
+# file = "case57IIRsAtTimeStep1.txt"  # 135
+# file = "case39IIRsAtTimeStep1.txt"  # 84
+# file = "case30QIIRsAtTimeStep1.txt" # 71 -> 7
+# file = "case24_ieee_rtsIIRsAtTimeStep1.txt" # 58
 
 # Read input file
 inputtext = []
@@ -91,10 +107,25 @@ for step in range(1, BOUND+1):
     or_constraint = Or(constraint)
     s.add(or_constraint)
 
+    if VERBOSE:
+        start_time = time.time()
+    sat_result = s.check()
+    if VERBOSE:
+        elapse_time = time.time() - start_time
+        print(step, ", ", elapse_time)
+
+    if sat_result == sat:
+        model_obtained = s.model()
+    else:
+        break
+
+'''
     if s.check() == sat:
         model_obtained = s.model()
     else:
         break
+'''
+
 
 # print(s.model())
 # print(s)
